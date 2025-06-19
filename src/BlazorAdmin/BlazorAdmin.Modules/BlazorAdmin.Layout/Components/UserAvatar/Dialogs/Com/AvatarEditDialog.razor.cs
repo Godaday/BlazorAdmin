@@ -1,5 +1,4 @@
-﻿using BlazorAdmin.Core.Auth;
-using BlazorAdmin.Core.Extension;
+﻿using BlazorAdmin.Servers.Core.Auth;
 using Cropper.Blazor.Components;
 using Cropper.Blazor.Extensions;
 using Cropper.Blazor.Models;

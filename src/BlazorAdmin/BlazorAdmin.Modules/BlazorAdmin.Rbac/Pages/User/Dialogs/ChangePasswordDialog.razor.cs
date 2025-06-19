@@ -1,4 +1,4 @@
-﻿using BlazorAdmin.Core.Helper;
+﻿using BlazorAdmin.Servers.Core.Helper;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using System.ComponentModel.DataAnnotations;
@@ -19,7 +19,7 @@ namespace BlazorAdmin.Rbac.Pages.User.Dialogs
             if (user != null)
             {
                 user.PasswordHash = HashHelper.HashPassword(PasswordModel.Password!);
-                await context.SaveChangesAsync();
+                await context.SaveChangesAuditAsync();
                 _snackbarService.Add("密码修改成功！", Severity.Success);
                 MudDialog?.Close(DialogResult.Ok(true));
             }
