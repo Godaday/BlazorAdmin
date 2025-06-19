@@ -13,7 +13,7 @@ namespace BlazorAdmin.Im.Components
 {
     public partial class ChatDialog
     {
-        [CascadingParameter] MudDialogInstance? MudDialog { get; set; }
+        [CascadingParameter] IMudDialogInstance? MudDialog { get; set; }
 
         [Parameter] public HubConnection Connection { get; set; } = null!;
 

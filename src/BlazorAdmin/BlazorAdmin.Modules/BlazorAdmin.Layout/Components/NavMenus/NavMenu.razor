@@ -1,7 +1,7 @@
 ﻿@rendermode InteractiveServer
 
-<MudDrawer @bind-Open="_layoutState.NavIsOpen" ClipMode="DrawerClipMode.Never" Elevation="2" Style="z-index:1350;">
-    <MudDrawerHeader Class="d-flex align-center">
+<MudDrawer @bind-Open="_layoutState.NavIsOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
+    <MudDrawerHeader>
         <MudIcon Icon="@IconsConstant.Blazor" Class="mr-1" Size="Size.Large" Color="Color.Primary"></MudIcon>
         <MudText Typo="Typo.h5" Color="Color.Primary">Blazor Admin</MudText>
     </MudDrawerHeader>
