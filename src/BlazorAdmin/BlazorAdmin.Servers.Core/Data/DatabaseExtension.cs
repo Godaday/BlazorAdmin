@@ -118,26 +118,27 @@ namespace BlazorAdmin.Servers.Core.Data
                 });
                 dbContext.SaveChanges();
 
-                dbContext.Menus.Add(new Menu { Name = "首页", Type = 1, Route = "/", Order = 1, Icon = Icons.Material.Filled.Home });
+                dbContext.Menus.Add(new Menu { Name = "首页", Type = 1, Route = $"/{CurrentApplication.AdminPath}", Order = 1, Icon = Icons.Material.Filled.Home });
                 var entry = dbContext.Menus.Add(new Menu { Name = "日志", Type = 1, Route = "/", Order = 2, Icon = Icons.Material.Filled.Info });
                 var entry2 = dbContext.Menus.Add(new Menu { Name = "权限", Type = 1, Route = "/", Order = 3, Icon = Icons.Material.Filled.VerifiedUser });
                 var entry3 = dbContext.Menus.Add(new Menu { Name = "系统", Type = 1, Route = "/", Order = 4, Icon = Icons.Material.Filled.Computer });
-                dbContext.Menus.Add(new Menu { Name = "关于", Type = 1, Route = "/about", Order = 5, Icon = Icons.Material.Filled.TextFields });
+                dbContext.Menus.Add(new Menu { Name = "关于", Type = 1, Route = $"/{CurrentApplication.AdminPath}/about", Order = 5, Icon = Icons.Material.Filled.TextFields });
                 dbContext.SaveChanges();
 
-                dbContext.Menus.Add(new Menu { ParentId = entry.Entity.Id, Name = "审计", Type = 1, Route = "/auditLog", Order = 1, Icon = Icons.Material.Filled.Verified });
-                dbContext.Menus.Add(new Menu { ParentId = entry.Entity.Id, Name = "登录", Type = 1, Route = "/loginLog", Order = 2, Icon = Icons.Material.Filled.Login });
+                dbContext.Menus.Add(new Menu { ParentId = entry.Entity.Id, Name = "审计", Type = 1, Route = $"/{CurrentApplication.AdminPath}/auditLog", Order = 1, Icon = Icons.Material.Filled.Verified });
+                dbContext.Menus.Add(new Menu { ParentId = entry.Entity.Id, Name = "登录", Type = 1, Route = $"/{CurrentApplication.AdminPath}/loginLog", Order = 2, Icon = Icons.Material.Filled.Login });
                 dbContext.SaveChanges();
 
-                var userManageEnty = dbContext.Menus.Add(new Menu { ParentId = entry2.Entity.Id, Name = "用户", Type = 1, Route = "/user", Order = 1, Icon = Icons.Material.Filled.Person });
-                var roleManageEntry = dbContext.Menus.Add(new Menu { ParentId = entry2.Entity.Id, Name = "角色", Type = 1, Route = "/role", Order = 2, Icon = Icons.Material.Filled.LockPerson });
-                var menuManageEntry = dbContext.Menus.Add(new Menu { ParentId = entry2.Entity.Id, Name = "菜单", Type = 1, Route = "/menu", Order = 3, Icon = Icons.Material.Filled.Menu });
-                var organizationManageEntry = dbContext.Menus.Add(new Menu { ParentId = entry2.Entity.Id, Name = "组织", Type = 1, Route = "/organization", Order = 4, Icon = Icons.Material.Filled.AccountTree });
+                var userManageEnty = dbContext.Menus.Add(new Menu { ParentId = entry2.Entity.Id, Name = "用户", Type = 1, Route = $"/{CurrentApplication.AdminPath}/user", Order = 1, Icon = Icons.Material.Filled.Person });
+                var roleManageEntry = dbContext.Menus.Add(new Menu { ParentId = entry2.Entity.Id, Name = "角色", Type = 1, Route = $"/{CurrentApplication.AdminPath}/role", Order = 2, Icon = Icons.Material.Filled.LockPerson });
+                var menuManageEntry = dbContext.Menus.Add(new Menu { ParentId = entry2.Entity.Id, Name = "菜单", Type = 1, Route = $"/{CurrentApplication.AdminPath}/menu", Order = 3, Icon = Icons.Material.Filled.Menu });
+                var organizationManageEntry = dbContext.Menus.Add(new Menu { ParentId = entry2.Entity.Id, Name = "组织", Type = 1, Route = $"/{CurrentApplication.AdminPath}/organization", Order = 4, Icon = Icons.Material.Filled.AccountTree });
                 dbContext.SaveChanges();
 
-                dbContext.Menus.Add(new Menu { ParentId = entry3.Entity.Id, Name = "配置", Type = 1, Route = "/setting", Order = 1, Icon = Icons.Material.Filled.Settings });
-                dbContext.Menus.Add(new Menu { ParentId = entry3.Entity.Id, Name = "指标", Type = 1, Route = "/appmetric", Order = 2, Icon = Icons.Material.Filled.AutoGraph });
-                dbContext.Menus.Add(new Menu { ParentId = entry3.Entity.Id, Name = "代码", Type = 1, Route = "/code-generator", Order = 2, Icon = Icons.Material.Filled.Code });
+                dbContext.Menus.Add(new Menu { ParentId = entry3.Entity.Id, Name = "配置", Type = 1, Route = $"/{CurrentApplication.AdminPath}/setting", Order = 1, Icon = Icons.Material.Filled.Settings });
+                dbContext.Menus.Add(new Menu { ParentId = entry3.Entity.Id, Name = "指标", Type = 1, Route = $"/{CurrentApplication.AdminPath}/appmetric", Order = 2, Icon = Icons.Material.Filled.AutoGraph });
+                dbContext.Menus.Add(new Menu { ParentId = entry3.Entity.Id, Name = "代码", Type = 1, Route = $"/{CurrentApplication.AdminPath}/code-generator", Order = 3, Icon = Icons.Material.Filled.Code });
+                dbContext.Menus.Add(new Menu { ParentId = entry3.Entity.Id, Name = "数据字典", Type = 1, Route = $"/{CurrentApplication.AdminPath}/dictionarys", Order = 4, Icon = Icons.Material.Filled.DirectionsCar });
                 dbContext.SaveChanges();
 
                 //// ai key管理
@@ -185,10 +186,10 @@ namespace BlazorAdmin.Servers.Core.Data
 
                 var userEntry = dbContext.Users.Add(new User
                 {
-                    Name = "BlazorAdmin",
+                    Name = "admin",
                     IsEnabled = true,
-                    PasswordHash = HashHelper.HashPassword("BlazorAdmin"),
-                    RealName = "BlazorAdmin"
+                    PasswordHash = HashHelper.HashPassword("admin#2025"),
+                    RealName = "管理员"
                 });
                 dbContext.SaveChanges();
 

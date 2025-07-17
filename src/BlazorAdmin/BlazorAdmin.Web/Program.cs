@@ -4,6 +4,7 @@ using BlazorAdmin.Servers.Core.Chat;
 using BlazorAdmin.Servers.Core.Data;
 using BlazorAdmin.Servers.Core.Helper;
 using BlazorAdmin.Servers.Core.Modules;
+
 using BlazorAdmin.Servers.Core.Services;
 using BlazorAdmin.Web.Components;
 using Cropper.Blazor.Extensions;
@@ -66,6 +67,7 @@ if (!Directory.Exists(dbDirectory))
 // dbcontext
 builder.AddDatabase();
 
+
 // messagesender
 builder.Services.AddSingleton<MessageSender>();
 
@@ -109,6 +111,7 @@ builder.Services.AddControllers();
 
 // modules
 moduleList.ForEach(m => m.Add(builder.Services));
+CurrentApplication.AdminPath = builder.Configuration.GetValue<string>("AdminSettings:AdminPath") ?? "admin";
 
 var app = builder.Build();
 

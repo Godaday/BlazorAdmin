@@ -1,15 +1,13 @@
 ﻿@using System.Net.Http
 @using BlazorAdmin
 
-@using BlazorAdmin.Rbac.Components;
-@using BlazorAdmin.Rbac.Resources;
 @using BlazorAdmin.Servers.Core.Auth;
 @using BlazorAdmin.Servers.Core.Components.Pages;
-@using BlazorAdmin.Servers.Core.Components.Select;
 @using BlazorAdmin.Servers.Core.Data;
 @using BlazorAdmin.Servers.Core.Helper
 @using BlazorAdmin.Servers.Core.Resources;
 @using BlazorAdmin.Servers.Core.Services;
+
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.AspNetCore.Components.Forms
@@ -21,7 +19,6 @@
 @using Microsoft.Extensions.Localization;
 @using Microsoft.JSInterop
 @using MudBlazor
-@using BlazorAdmin.Servers.Core
 
 @inject IJSRuntime _jsRuntime;
 @inject IDbContextFactory<BlazorAdminDbContext> _dbFactory;
@@ -34,10 +31,8 @@
 @inject ExternalAuthService _authService;
 @inject ProtectedLocalStorage _localStorage;
 @inject NavigationManager _navManager;
-@inject IStringLocalizer<RbacCulture> Loc;
-@inject IJobService _jobService;
+@inject IStringLocalizer<CusCulture> Loc;
+
 
 
 @attribute [Authorize]
-
-

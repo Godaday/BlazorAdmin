@@ -1,6 +1,7 @@
 ﻿using BlazorAdmin.Servers.Core.Data.Constants;
 using BlazorAdmin.Servers.Core.Data.Entities.Ai;
 using BlazorAdmin.Servers.Core.Data.Entities.Chat;
+using BlazorAdmin.Servers.Core.Data.Entities.Infrastructure;
 using BlazorAdmin.Servers.Core.Data.Entities.Log;
 using BlazorAdmin.Servers.Core.Data.Entities.Notification;
 using BlazorAdmin.Servers.Core.Data.Entities.Rbac;
@@ -45,6 +46,7 @@ namespace BlazorAdmin.Servers.Core.Data
         public DbSet<AuditLogDetail> AuditLogDetails { get; set; }
 
         public DbSet<LoginLog> LoginLogs { get; set; }
+        public DbSet<AppDictionary> AppDictionarys { get; set; }
 
         #region chat
 

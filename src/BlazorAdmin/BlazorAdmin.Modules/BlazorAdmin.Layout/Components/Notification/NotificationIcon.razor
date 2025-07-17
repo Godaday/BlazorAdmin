@@ -15,12 +15,12 @@
 @rendermode InteractiveServer
 
 <MudMenu Icon="@Icons.Material.Filled.Notifications" Color="Color.Inherit" Dense="true"
-         TransformOrigin="Origin.TopRight">
+TransformOrigin="Origin.TopRight">
     <ActivatorContent>
         @if (UnreadCount > 0)
         {
             <MudBadge Content="@UnreadCount" Color="Color.Primary" Class="dense-badge"
-                      Overlap="true" Style="margin-right:12px;">
+            Overlap="true" Style="margin-right:12px;">
                 <MudIconButton Icon="@Icons.Material.Filled.Notifications" Color="Color.Inherit">
                 </MudIconButton>
             </MudBadge>
@@ -28,7 +28,7 @@
         else
         {
             <MudIconButton Icon="@Icons.Material.Filled.Notifications" Color="Color.Inherit"
-                           Style="margin-right:12px;">
+            Style="margin-right:12px;">
             </MudIconButton>
         }
     </ActivatorContent>
@@ -43,21 +43,21 @@
                     <div>
                         <MudTooltip Text="@L["SendMessage"]" Color="Color.Primary">
                             <MudIconButton Icon="@Icons.Material.Filled.Send" Size="Size.Small"
-                                           OnClick="OpenSendDialog" />
+                            OnClick="OpenSendDialog" />
                         </MudTooltip>
                         <ActivatableContainer>
                             <MudTooltip Text="@L["ViewUnread"]" Color="Color.Primary">
                                 <MudIconButton Icon="@Icons.Material.Filled.FilterAlt" Size="Size.Small"
-                                               OnClick="ShowAllNotRead"
-                                               Color="@(ShowUnreadOnly ? Color.Primary : Color.Default)" />
+                                OnClick="ShowAllNotRead"
+                                Color="@(ShowUnreadOnly ? Color.Primary : Color.Default)" />
                             </MudTooltip>
                             <MudTooltip Text="@L["MarkAllAsRead"]" Color="Color.Primary">
                                 <MudIconButton Icon="@Icons.Material.Filled.DoneAll" Size="Size.Small"
-                                               OnClick="MarkAllAsRead" />
+                                OnClick="MarkAllAsRead" />
                             </MudTooltip>
                             <MudTooltip Text="@L["DeleteAllRead"]" Color="Color.Primary">
                                 <MudIconButton Icon="@Icons.Material.Filled.DeleteSweep" Size="Size.Small"
-                                               OnClick="DeleteAllRead" />
+                                OnClick="DeleteAllRead" />
                             </MudTooltip>
                         </ActivatableContainer>
                     </div>
@@ -100,7 +100,7 @@
                                 {
                                     <MudTooltip Text="@L["MarkAsRead"]">
                                         <MudIconButton Icon="@Icons.Material.Filled.Done" Size="Size.Small"
-                                                       OnClick="@((e) => { _ = MarkAsRead(notification.Id); })" />
+                                        OnClick="@((e) => { _ = MarkAsRead(notification.Id); })" />
                                     </MudTooltip>
                                 }
                                 @if (notification.IsRead)
@@ -108,13 +108,13 @@
                                     <ActivatableContainer>
                                         <MudTooltip Text="@L["DeleteMessage"]">
                                             <MudIconButton Icon="@Icons.Material.Filled.Delete" Size="Size.Small" Color="Color.Error"
-                                                           OnClick="@((e) => { _ = DeleteNotification(notification.Id); })" />
+                                            OnClick="@((e) => { _ = DeleteNotification(notification.Id); })" />
                                         </MudTooltip>
                                     </ActivatableContainer>
                                 }
                                 <MudTooltip Text="@L["ViewDetails"]">
                                     <MudIconButton Icon="@Icons.Material.Filled.Info" Size="Size.Small" Color="Color.Primary"
-                                                   OnClick="@((e) => {OpenNotificationDialog(notification); })" />
+                                    OnClick="@((e) => {OpenNotificationDialog(notification); })" />
                                 </MudTooltip>
                             </div>
                         </div>
@@ -134,9 +134,9 @@
                     <ActivatableContainer>
                         <div class="d-flex justify-center pa-2">
                             <MudPagination Count="@((int)Math.Ceiling(TotalCount / (double)PageSize))"
-                                           SelectedChanged="OnPageChanged" BoundaryCount=1 MiddleCount=3
-                                           Selected="CurrentPage"
-                                           Size="Size.Small" />
+                            SelectedChanged="OnPageChanged" BoundaryCount=1 MiddleCount=3
+                            Selected="CurrentPage"
+                            Size="Size.Small" />
                         </div>
                     </ActivatableContainer>
                 </MudMenuItem>
@@ -197,7 +197,7 @@
             <MudTextField @bind-Value="newNotification.Title" Label="@L["Title"]" Required="true" RequiredError="@L["TitleRequired"]" />
             <MudTextField @bind-Value="newNotification.Content" Label="@L["Content"]" Lines="5" Required="true" RequiredError="@L["ContentRequired"]" />
             <MudSelect T="string" Label="@L["Receivers"]" MultiSelection="true" @bind-SelectedValues="selectedReceivers" Required="true"
-                       RequiredError="@L["ReceiversRequired"]" MultiSelectionTextFunc="@((items) => string.Join(',',users.Where(u => items.Contains(u.Id)).Select(u =>u.UserName)) )">
+            RequiredError="@L["ReceiversRequired"]" MultiSelectionTextFunc="@((items) => string.Join(',',users.Where(u => items.Contains(u.Id)).Select(u =>u.UserName)) )">
                 @foreach (var user in users)
                 {
                     <MudSelectItem Value="@user.Id">@user.UserName</MudSelectItem>
@@ -254,9 +254,12 @@
 
     protected override async Task OnInitializedAsync()
     {
-        await LoadNotifications();
-        await LoadUnreadCount();
-        StateHasChanged();
+            await LoadNotifications();
+            await LoadUnreadCount();
+            StateHasChanged();
+        
+
+
     }
 
     private async Task LoadUsers()
@@ -308,27 +311,31 @@
 
     private async Task LoadNotifications()
     {
+
+
+
+
         using var context = await _dbFactory.CreateDbContextAsync();
         var userState = await _stateProvider.GetAuthenticationStateAsync();
         var userId = userState.User.GetUserId();
+        if (userId!=-1){
+            var query = from n in context.Notifications
+                        join nr in context.NotificationReceivers on n.Id equals nr.NotificationId
+                        join u in context.Users on n.SenderId equals u.Id into uGroup
+                        from u in uGroup.DefaultIfEmpty()
+                        join r in context.Users on nr.ReceiverId equals r.Id into rGroup
+                        from r in rGroup.DefaultIfEmpty()
+                        where nr.ReceiverId == userId && (!ShowUnreadOnly || !nr.IsRead)
+                        orderby n.SendTime descending
+                        select new { Notification = n, Receiver = nr, Sender = u, ReceiverUser = r };
 
-        var query = from n in context.Notifications
-                    join nr in context.NotificationReceivers on n.Id equals nr.NotificationId
-                    join u in context.Users on n.SenderId equals u.Id into uGroup
-                    from u in uGroup.DefaultIfEmpty()
-                    join r in context.Users on nr.ReceiverId equals r.Id into rGroup
-                    from r in rGroup.DefaultIfEmpty()
-                    where nr.ReceiverId == userId && (!ShowUnreadOnly || !nr.IsRead)
-                    orderby n.SendTime descending
-                    select new { Notification = n, Receiver = nr, Sender = u, ReceiverUser = r };
+            TotalCount = await query.CountAsync();
 
-        TotalCount = await query.CountAsync();
-
-        var skip = (CurrentPage - 1) * PageSize;
-        Notifications = await query
-            .Skip(skip)
-            .Take(PageSize)
-            .Select(x => new NotificationViewModel
+            var skip = (CurrentPage - 1) * PageSize;
+            Notifications = await query
+                .Skip(skip)
+                .Take(PageSize)
+                .Select(x => new NotificationViewModel
             {
                 Id = x.Notification.Id,
                 Title = x.Notification.Title,
@@ -340,7 +347,9 @@
                 ReceiverName = x.ReceiverUser.RealName,
                 Type = x.Notification.Type,
             })
-            .ToListAsync();
+                .ToListAsync();
+        }
+
     }
 
     private async Task LoadUnreadCount()
@@ -348,9 +357,13 @@
         using var context = await _dbFactory.CreateDbContextAsync();
         var userState = await _stateProvider.GetAuthenticationStateAsync();
         var userId = userState.User.GetUserId();
-
-        UnreadCount = await context.NotificationReceivers
-            .CountAsync(nr => nr.ReceiverId == userId && !nr.IsRead);
+        if (userId != -1)
+        
+        {
+            UnreadCount = await context.NotificationReceivers
+        .CountAsync(nr => nr.ReceiverId == userId && !nr.IsRead);
+        }
+    
     }
 
     private async Task OnPageChanged(int page)

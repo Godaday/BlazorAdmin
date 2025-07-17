@@ -5,7 +5,7 @@
 @rendermode InteractiveServer
 
 <MudMenu Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Dense="true"
-         AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopRight">
+AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopRight">
     <ActivatorContent>
         @if (string.IsNullOrEmpty(_avatar))
         {
@@ -57,7 +57,7 @@
         var couldAccess = await _accessService.CheckUriCanAccess(currentUri);
         if (!couldAccess)
         {
-            _navManager.NavigateTo("/noauthorized");
+            _navManager.NavigateTo("/dashboard/noauthorized");
         }
         else
         {
@@ -88,7 +88,7 @@
     {
         var cookieUtil = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", "./js/cookieUtil.js");
         await cookieUtil.InvokeVoidAsync("setCookie", CommonConstant.UserToken, string.Empty);
-
-        _navManager.NavigateTo("/login", true);
+        _authService.SetCurrentUser(null);
+        _navManager.NavigateTo("/dashboard/login", true);
     }
 }

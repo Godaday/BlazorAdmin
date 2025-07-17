@@ -3,10 +3,10 @@
 @rendermode InteractiveServer
 
 <MudDrawer @bind-Open="_layoutState.NavIsOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
-    <MudDrawerHeader>
-        <MudIcon Icon="@IconsConstant.Blazor" Class="mr-1" Size="Size.Large" Color="Color.Primary"></MudIcon>
-        <MudText Typo="Typo.h5" Color="Color.Primary">BlazorAdmin</MudText>
-    </MudDrawerHeader>
+@*     <MudDrawerHeader> 
+        <MudIcon Icon="@IconsConstant.Blazor" Class="mr-1"  Color="Color.Primary"></MudIcon> 
+       <MudText Typo="Typo.h5" Color="Color.Success">BlazorAdmin</MudText>
+     </MudDrawerHeader> *@
     <MudNavMenu Margin="Margin.Dense" Color="Color.Inherit" Rounded="true" Class="pa-2">
         <NavItemMenu NavMenuItems="NavMenuItems" NavTo="NavTo"/>
     </MudNavMenu>

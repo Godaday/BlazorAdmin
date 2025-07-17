@@ -17,7 +17,7 @@
                 var state = await _stateProvider.GetAuthenticationStateAsync();
                 if (state.User.Identity == null || !state.User.Identity.IsAuthenticated)
                 {
-                    _navManager.NavigateTo("/login");
+                    _navManager.NavigateTo("/dashboard/login");
                 }
 
             }

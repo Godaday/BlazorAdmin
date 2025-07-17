@@ -7,20 +7,20 @@
 @rendermode InteractiveServer
 @attribute [AllowAnonymous]
 
-@page "/login"
+@page "/dashboard/login"
 
 <div class="full-screen d-flex justify-center align-center">
-    <div class="inner"></div>
+    <div class="inner" ></div>
     @if (ShowContent)
     {
         <MudPaper Class="pa-8 d-flex justify-center align-center flex-column py-8 rounded-lg" Style="z-index:10;">
             <MudText Typo="Typo.h4" Class="py-4">
                 <div class="d-flex align-center">
-                    <MudIcon Icon="@IconsConstant.Blazor" Class="mr-1" Size="Size.Large"></MudIcon>
-                    BlazorAdmin
+                    <MudIcon Icon="@IconsConstant.Database" Class="mr-1" Size="Size.Large"></MudIcon>
+                    CMTN
                 </div>
             </MudText>
-            <div style="width:300px;">
+            <div style="width:340px;">
                 <EditForm Model="_loginModel" OnValidSubmit="LoginSubmit" style="width:100%;">
                     <DataAnnotationsValidator />
                     <MudTextField Class="mt-4" @bind-Value="_loginModel.UserName" Variant="Variant.Outlined" Margin="Margin.Dense"
@@ -63,7 +63,7 @@
         </svg>
     }
 
-    <div style="position: absolute; bottom: 20px; right: 20px;">
-        <PrimaryChangeButton IsFab="true" />
-    </div>
+    @* <div style="position: absolute; bottom: 20px; right: 20px;"> *@
+    @*     <PrimaryChangeButton IsFab="true" /> *@
+    @* </div> *@
 </div>

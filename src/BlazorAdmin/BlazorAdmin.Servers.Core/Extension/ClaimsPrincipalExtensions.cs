@@ -7,8 +7,15 @@ namespace BlazorAdmin.Servers.Core.Extension
     {
         public static int GetUserId(this ClaimsPrincipal user)
         {
-            var userId = user.Claims.FirstOrDefault(c => c.Type == ClaimConstant.UserId)!.Value;
-            return int.Parse(userId);
+            try
+            {
+                var userId = user.Claims.FirstOrDefault(c => c.Type == ClaimConstant.UserId)!.Value;
+                return int.Parse(userId);
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
         }
 
         public static string GetUserName(this ClaimsPrincipal user)

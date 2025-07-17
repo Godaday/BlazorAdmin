@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAdmin.About.Client", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAdmin.Servers.Core", "BlazorAdmin.Servers.Core\BlazorAdmin.Servers.Core.csproj", "{77CE28E5-6897-4C55-8906-F53AD7B791A6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAdmin.Dictionary", "BlazorAdmin.Modules\BlazorAdmin.Dictionary\BlazorAdmin.Dictionary.csproj", "{D01617FC-EE56-7876-B794-7D86B729FB6C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{77CE28E5-6897-4C55-8906-F53AD7B791A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77CE28E5-6897-4C55-8906-F53AD7B791A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77CE28E5-6897-4C55-8906-F53AD7B791A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D01617FC-EE56-7876-B794-7D86B729FB6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D01617FC-EE56-7876-B794-7D86B729FB6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D01617FC-EE56-7876-B794-7D86B729FB6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D01617FC-EE56-7876-B794-7D86B729FB6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -111,6 +117,7 @@ Global
 		{6703DDE6-A274-4AB7-85BA-F3AB9519BB01} = {198415CC-2C48-4B17-B1AF-ADB575297E35}
 		{BB9B9ED4-4CCF-4DBD-8345-A5734341E9BB} = {198415CC-2C48-4B17-B1AF-ADB575297E35}
 		{F936ADE2-F2BD-4F5C-8C0C-9743CF01C6A0} = {338FE501-B2F4-4EB3-A86C-55828CFDE01D}
+		{D01617FC-EE56-7876-B794-7D86B729FB6C} = {8BBD5B11-B311-4365-883C-D3E6E6A09D8D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4BFD3B45-B9A0-4E8F-B469-A814CA18ED85}

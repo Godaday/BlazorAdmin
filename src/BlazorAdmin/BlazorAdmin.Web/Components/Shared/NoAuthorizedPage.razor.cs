@@ -10,7 +10,7 @@ namespace BlazorAdmin.Web.Components.Shared
             var cookieUtil = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", "./js/cookieUtil.js");
             await cookieUtil.InvokeVoidAsync("setCookie", CommonConstant.UserToken, string.Empty);
 
-            _navManager.NavigateTo("/login", true);
+            _navManager.NavigateTo("/dashboard/login", true);
         }
     }
 }

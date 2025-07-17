@@ -13,6 +13,7 @@ namespace BlazorAdmin.Web.Components
             typeof(About.Client._Imports).Assembly,
             typeof(Metric._Imports).Assembly,
             typeof(Ai._Imports).Assembly,
+            typeof(Dictionary._Imports).Assembly
         };
     }
 }
